@@ -2,24 +2,24 @@ from gologin import GoLogin
 import pandas as pd
 import random
 import time
+from faker import Faker
+
+fake = Faker()
 
 global obj
 obj = GoLogin(options={
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThiYTdmN2RiYmM5MzNlODNkYmM5ZjkiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MThiYTgxNWRiYmM5MzU1MzlkYmNhMDcifQ.pQueIhjVztexcwzNCSHxu-4X1tvcf5eqFtHFBzYn7X0",
     "profile_id": "618ba7f8dbbc936b21dbc9fb"
 })
-# obj.start()
-# print(obj.create())
 
-# exit()
 orignalDataset = pd.read_csv("profile_dataset_2.csv")
-dataset = orignalDataset[orignalDataset['name'].notnull(
+dataset = orignalDataset[orignalDataset['proxyList'].notnull(
 )][orignalDataset['isCreated'] != True]
 
-for i in range(len(dataset.name)):
+for i in range(len(dataset.proxyList)):
     host, port = dataset.proxyList.iloc[i].split(":")
     options = {
-        "name": dataset.name.iloc[i] + str(i*100),
+        "name": str(fake.name()),
         "notes": "",
         "debugMode": False,
         "browserType": "chrome",
