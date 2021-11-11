@@ -10,7 +10,7 @@ import subprocess
 import pathlib
 import tempfile
 
-API_URL = 'https://api.gologin.com/'
+API_URL = 'https://api.gologin.com'
 
 class GoLogin(object):
     def __init__(self, options):
@@ -307,7 +307,7 @@ class GoLogin(object):
         pref_file = os.path.join(self.profile_path, 'Default/Preferences')
         pfile = open(pref_file, 'r')
         preferences = json.load(pfile)    
-        pfile.close()   
+        pfile.close()  
         profile = self.profile
         proxy = self.profile.get('proxy')
         # print('proxy=', proxy)
@@ -425,7 +425,7 @@ class GoLogin(object):
         profile = self.getProfile()
         for k,v in options.items():
             profile[k] = v
-        return json.loads(requests.put(API_URL + '/browser/' + self.profile_id, headers=self.headers(), json=profile).content.decode('utf-8'))
+        return json.loads(requests.put(API_URL + '/browser/' + profile_id, headers=self.headers(), json=profile).content.decode('utf-8'))
 
     def waitDebuggingUrl(self, delay_s, try_count=3):
         url = 'https://' + self.profile_id + '.orbita.gologin.com/json/version'
