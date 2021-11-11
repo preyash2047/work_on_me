@@ -12,11 +12,12 @@ obj = GoLogin(options={
     "profile_id": "618ba7f8dbbc936b21dbc9fb"
 })
 
-orignalDataset = pd.read_csv("profile_dataset_2.csv")
+dataset_path= "profile_dataset_2.csv"
+orignalDataset = pd.read_csv(dataset_path)
 dataset = orignalDataset[orignalDataset['proxyList'].notnull(
 )][orignalDataset['isCreated'] != True]
 
-for i in range(len(dataset.proxyList)):
+def getOptions(i):
     host, port = dataset.proxyList.iloc[i].split(":")
     options = {
         "name": str(fake.name()),
@@ -46,13 +47,23 @@ for i in range(len(dataset.proxyList)):
             "port": port,
         }
     }
+    
     resultID = obj.create(options)
-    time.sleep(2)
-    print("resultID", resultID)
+    
     if(resultID != None):
-        print("No Profiles created successfully:", i+1)
         index = orignalDataset.index[orignalDataset['proxyList'] == dataset.proxyList.iloc[i]]
         # orignalDataset.isCreated.iloc[index] = True
+    
+    return resultID
 
-orignalDataset.to_csv("profile_dataset_2.csv", index=False)
+for i in range(len(dataset.proxyList)):
+    try:
+        resultID = getOptions(i)
+        print(i+1, "Profiles created successfully:")
+    except:
+        print("Failed to Create Profile number", i+1)
+    finally:
+        time.sleep(2)
+
+orignalDataset.to_csv(dataset_path, index=False)
 print("Profile Creation Done")
