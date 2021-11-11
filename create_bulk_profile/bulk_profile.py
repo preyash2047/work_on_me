@@ -5,8 +5,8 @@ import time
 
 global obj
 obj = GoLogin(options={
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTgwMWEwMGQ2ODA0NTIwYmI0MzgwNTYiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MTgxNmM2NzY3MWZiMWVhMGM1ZjRiNzMifQ.t_NhbA76YRkay1lo4bJUBC6ct0Qc4GhCb58e6nyTIGk",
-    "profile_id": "6187648ecbd4ec3e1a2ff11e"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThiYTdmN2RiYmM5MzNlODNkYmM5ZjkiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MThiYTgxNWRiYmM5MzU1MzlkYmNhMDcifQ.pQueIhjVztexcwzNCSHxu-4X1tvcf5eqFtHFBzYn7X0",
+    "profile_id": "618ba7f8dbbc936b21dbc9fb"
 })
 obj.start()
 # print(obj.create())
