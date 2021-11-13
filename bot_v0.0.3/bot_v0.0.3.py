@@ -29,11 +29,12 @@ def getProfileIdList(obj):
     return [i["id"] for i in json.loads(response.text)]
 
 profileIds = getProfileIdList(gl)
-profileIds = profileIds[1:3]
-
+# profileIds = profileIds[1:3]
+profileIds = ["618d665dc64696bc5c299267"]
 orignalDataset = pd.read_csv("users_data.csv")
 dataset = orignalDataset[orignalDataset['name'].notnull()]
 
+workingProfileId = []
 for i in profileIds:
     gl.profile_id = i
     debugger_address = gl.start()
@@ -42,8 +43,13 @@ for i in profileIds:
     driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
     driver = CodeMe(driver)
     driver = driver.start()
-    time.sleep(30)
+    # time.sleep(5)
+    if "1 more way to enter." in driver.page_source:
+        workingProfileId.append(i)
     driver.close()
     gl.stop()
+
+with open("workingProfileId.txt", "w") as f:
+    f.writelines(workingProfileId)
 
 print("Python File Execution Finished")
