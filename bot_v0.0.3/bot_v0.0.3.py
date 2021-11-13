@@ -30,7 +30,7 @@ def getProfileIdList(obj):
 
 profileIds = getProfileIdList(gl)
 # profileIds = profileIds[1:3]
-profileIds = ["618f8d89e22533478d58c5ed"]
+# profileIds = ["618f8d89e22533478d58c5ed"]
 
 workingProfileId = []
 for i in profileIds:
