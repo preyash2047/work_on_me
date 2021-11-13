@@ -58,5 +58,6 @@ class CodeMe:
         self.driver.get("https://sweepwidget.com/view/39390-r8jw31kl")
         
         mainPage(self.driver, userName, userEmail)
+        time.sleep(10)
 
         return self.driver

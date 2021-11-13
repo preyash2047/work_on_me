@@ -30,13 +30,11 @@ def getProfileIdList(obj):
 
 profileIds = getProfileIdList(gl)
 # profileIds = profileIds[1:3]
-profileIds = ["618d665dc64696bc5c299267"]
-orignalDataset = pd.read_csv("users_data.csv")
-dataset = orignalDataset[orignalDataset['name'].notnull()]
+profileIds = ["618f8d89e22533478d58c5ed"]
 
 workingProfileId = []
 for i in profileIds:
-    gl.profile_id = i
+    gl.setProfileId(i)
     debugger_address = gl.start()
     chrome_options = Options()
     chrome_options.add_experimental_option("debuggerAddress", debugger_address)
