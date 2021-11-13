@@ -52,18 +52,20 @@ def getOptions(i):
     
     if(resultID != None):
         index = orignalDataset.index[orignalDataset['proxyList'] == dataset.proxyList.iloc[i]]
-        # orignalDataset.isCreated.iloc[index] = True
+        orignalDataset.isCreated.iloc[index] = True
     
     return resultID
 
+print("Profiles created successfully:\n")
 for i in range(len(dataset.proxyList)):
     try:
         resultID = getOptions(i)
-        print(i+1, "Profiles created successfully:")
+        print(i+1, end=" ")
     except:
         print("Failed to Create Profile number", i+1)
     finally:
-        time.sleep(2)
+        time.sleep(.5)
+        # pass
 
 orignalDataset.to_csv(dataset_path, index=False)
 print("Profile Creation Done")
