@@ -12,7 +12,8 @@ import json
 
 global gl
 gl = GoLogin(options={
-    "token": get_key(),
+    # "token": get_key(),
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTkxMDRkZGNjZGU0NTVjZTJlZjgzNWUiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MTkxMDRlOWFmNzVkYjg4NWM0YTJmNzkifQ.EqT2rBmnY6U2Ie3zwW1QGSobahdxL0gKW9-V5NA7TYo",
     "profile_id": ""
 })
 
@@ -29,10 +30,10 @@ def getProfileIdList(obj):
     return [i["id"] for i in json.loads(response.text)]
 
 profileIds = getProfileIdList(gl)
+
 # profileIds = profileIds[1:3]
 # profileIds = ["618f8d89e22533478d58c5ed"]
 
-workingProfileId = []
 for i in profileIds:
     gl.setProfileId(i)
     debugger_address = gl.start()
@@ -40,14 +41,16 @@ for i in profileIds:
     chrome_options.add_experimental_option("debuggerAddress", debugger_address)
     driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
     driver = CodeMe(driver)
-    driver = driver.start()
-    # time.sleep(5)
-    if "1 more way to enter." in driver.page_source:
-        workingProfileId.append(i)
-    driver.close()
+    try:
+        driver = driver.start()
+        # time.sleep(5)
+        if "1 more way to enter." in driver.page_source:
+            with open("workingProfileId.txt", "a") as f:
+                f.write(i + "\n")
+        driver.close()  
+    except:
+        with open("notWorkingProfileId.txt", "a") as f:
+            f.write(i + "\n")
     gl.stop()
-
-with open("workingProfileId.txt", "w") as f:
-    f.writelines(workingProfileId)
 
 print("Python File Execution Finished")

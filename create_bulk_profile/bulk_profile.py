@@ -8,7 +8,8 @@ fake = Faker()
 
 global obj
 obj = GoLogin(options={
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThiYTdmN2RiYmM5MzNlODNkYmM5ZjkiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MThiYTgxNWRiYmM5MzU1MzlkYmNhMDcifQ.pQueIhjVztexcwzNCSHxu-4X1tvcf5eqFtHFBzYn7X0",
+    # "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MThiYTdmN2RiYmM5MzNlODNkYmM5ZjkiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MThiYTgxNWRiYmM5MzU1MzlkYmNhMDcifQ.pQueIhjVztexcwzNCSHxu-4X1tvcf5eqFtHFBzYn7X0",
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTkxMDRkZGNjZGU0NTVjZTJlZjgzNWUiLCJ0eXBlIjoiZGV2Iiwiand0aWQiOiI2MTkxMDRlOWFmNzVkYjg4NWM0YTJmNzkifQ.EqT2rBmnY6U2Ie3zwW1QGSobahdxL0gKW9-V5NA7TYo",
     "profile_id": "618ba7f8dbbc936b21dbc9fb"
 })
 

@@ -10,9 +10,9 @@ import time
 fake = Faker()
 
 #Bot Configeration
-referalName = "Yash"
+referalName = "Preyash"
 userName = str(fake.name())
-userEmail = str(fake.email())
+userEmail = str(fake.email(domain=random.choice(["gmail.com", "yahoo.com", "hotmail.com"])))
 UserProfileName = "preyash12"
 referalURL = "https://sweepwidget.com/view/39390-r8jw31kl"
 
@@ -48,16 +48,24 @@ def mainPage(driver, name, email):
     input2.send_keys(Keys.ENTER)
 
 
-
 class CodeMe:
     def __init__(self,driver):
         self.driver = driver
+        emails = []
+        with open("gmail.txt", "r") as f:
+            emails = f.read()
+        emails = emails.split("\n")    
+        emails = emails[300000:301000]
+        self.emails = [i.split(":")[0] for i in emails]
+
     def start(self):
         # print("I will perform my Task")
 
         self.driver.get("https://sweepwidget.com/view/39390-r8jw31kl")
+        time.sleep(5)
         
-        mainPage(self.driver, userName, userEmail)
-        time.sleep(10)
+        mainPage(self.driver, str(fake.name()), self.emails[0])
+        self.emails = self.emails[1:]
+        time.sleep(random.randint(10,30))
 
         return self.driver
