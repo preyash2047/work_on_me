@@ -35,28 +35,40 @@ with open("notWorkingProfileId.txt","r") as f:
     notWorking = f.read()
 notWorking = notWorking.split("\n")[:-1]
 profileIds = [i for i in profileIds if i not in notWorking]
+profileIds = profileIds[30:]
 # profileIds = profileIds[1:3]
 # profileIds = ["618f8d89e22533478d58c5ed"]
 
+emails = []
+with open("gmail.txt", "r") as f:
+    emails = f.read()
+emails = emails.split("\n")    
+emails = emails[300300:301000]
+emails = [i.split(":")[0] for i in emails]
 
-
+count = 0
 for i in profileIds:
+    count += 1
     gl.setProfileId(i)
     debugger_address = gl.start()
     chrome_options = Options()
     chrome_options.add_experimental_option("debuggerAddress", debugger_address)
     driver = webdriver.Chrome(executable_path=chrome_driver_path, options=chrome_options)
-    driver = CodeMe(driver)
+    driver = CodeMe(driver, emails[count])
     try:
         driver = driver.start()
         # time.sleep(5)
         if "1 more way to enter." in driver.page_source:
             with open("workingProfileId.txt", "a") as f:
                 f.write(i + "\n")
+        else:
+            with open("notWorkingProfileId.txt", "a") as f:
+                f.write(i + "\n")
         driver.close()  
     except:
         with open("notWorkingProfileId.txt", "a") as f:
             f.write(i + "\n")
     gl.stop()
+    time.sleep(3)
 
 print("Python File Execution Finished")
