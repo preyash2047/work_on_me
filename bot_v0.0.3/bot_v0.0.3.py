@@ -30,9 +30,15 @@ def getProfileIdList(obj):
     return [i["id"] for i in json.loads(response.text)]
 
 profileIds = getProfileIdList(gl)
-
+notWorking = None
+with open("notWorkingProfileId.txt","r") as f:
+    notWorking = f.read()
+notWorking = notWorking.split("\n")[:-1]
+profileIds = [i for i in profileIds if i not in notWorking]
 # profileIds = profileIds[1:3]
 # profileIds = ["618f8d89e22533478d58c5ed"]
+
+
 
 for i in profileIds:
     gl.setProfileId(i)

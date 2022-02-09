@@ -60,5 +60,6 @@ for i in range(10):
     except:
         pass
     gl.stop()
+    time.sleep(5)
 
 print("Python File Execution Finished")

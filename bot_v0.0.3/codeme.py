@@ -14,7 +14,7 @@ referalName = "Preyash"
 userName = str(fake.name())
 userEmail = str(fake.email(domain=random.choice(["gmail.com", "yahoo.com", "hotmail.com"])))
 UserProfileName = "preyash12"
-referalURL = "https://sweepwidget.com/view/39390-r8jw31kl"
+referalURL = "https://sweepwidget.com/view/40066-oqpecwsz"
 
 randomSleepOnEveryActionStart = 3
 randomSleepOnEveryActionEnd = 5
@@ -45,23 +45,17 @@ def mainPage(driver, name, email):
     # time.sleep(random.randint(randomSleepOnEveryActionStart, randomSleepOnEveryActionEnd))
     
     #submit
+    time.sleep(3)
     input2.send_keys(Keys.ENTER)
-
 
 class CodeMe:
     def __init__(self,driver):
         self.driver = driver
-        emails = []
-        with open("gmail.txt", "r") as f:
-            emails = f.read()
-        emails = emails.split("\n")    
-        emails = emails[300000:301000]
-        self.emails = [i.split(":")[0] for i in emails]
 
     def start(self):
         # print("I will perform my Task")
 
-        self.driver.get("https://sweepwidget.com/view/39390-r8jw31kl")
+        self.driver.get(referalURL)
         time.sleep(5)
         
         mainPage(self.driver, str(fake.name()), self.emails[0])
